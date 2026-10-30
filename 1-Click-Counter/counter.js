@@ -5,7 +5,7 @@ let getDisplay = document.getElementById("display");
 let value = 0;
 
 getCount.addEventListener("click", () => {
-  value++;
+  value = value - 4;
   getDisplay.innerHTML = value;
 });
 

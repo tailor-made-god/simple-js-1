@@ -55,3 +55,53 @@ a:hover {
   background-color: var(--c-dark-blue);
   color: var(--c-light-gray);
 }
+
+/* Simple Calculator */
+button:first-of-type {
+  margin: 0;
+}
+
+.calc {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(7, auto);
+}
+
+.calc button {
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+}
+
+.calc h1 {
+  grid-column: 1 / end;
+}
+
+.calc .cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-row: 2 / 3;
+  grid-column: 1 / end;
+  width: 100%;
+  height: 5rem;
+  border: 1px solid black;
+}
+.calc a {
+  grid-column: 1 / end;
+}
+
+.calc .text-box {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* To-do List */
+
+.list-container {
+  padding: 1rem;
+}
+
+.list-container > li {
+  text-align: left;
+}
