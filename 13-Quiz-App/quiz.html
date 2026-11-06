@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="card-container quiz">
+      <h1>Quiz App</h1>
+      <form id="form">
+        <div class="set1" id="set1">
+          <h2 id="qest1">
+            <span class="big">1</span>.What does HTML stand for?
+          </h2>
+          <ol>
+            <li>
+              <input type="radio" name="qes1" id="1ans1" value="1" />
+              <label for="1ans1">Hyper Text Markup Language</label>
+            </li>
+            <li>
+              <input type="radio" name="qes1" id="1ans2" value="2" />
+              <label for="1ans2">High Text Machine Language</label>
+            </li>
+            <li>
+              <input type="radio" name="qes1" id="1ans3" value="3" />
+              <label for="1ans3">Hyperlink and Text Management Language</label>
+            </li>
+            <li>
+              <input type="radio" name="qes1" id="1ans4" value="4" />
+              <label for="1ans4">Home Tool Markup Language</label>
+            </li>
+          </ol>
+        </div>
+        <div class="set2 none" id="set2">
+          <h2 id="qest2">
+            <span class="big">2</span>.Which HTML tag is used to create a
+            clickable hyperlink?
+          </h2>
+          <ol>
+            <li>
+              <input type="radio" name="qes2" id="2ans1" value="1" />
+              <label for="2ans1">&lt;link&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes2" id="2ans2" value="2" />
+              <label for="2ans2">&lt;a&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes2" id="2ans3" value="3" />
+              <label for="2ans3">&lt;href&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes2" id="2ans4" value="4" />
+              <label for="2ans4">&lt;url&gt;</label>
+            </li>
+          </ol>
+        </div>
+        <div class="set3 none" id="set3">
+          <h2 id="qest3">
+            <span class="big">3</span>.Which HTML element is used to specify the
+            largest heading?
+          </h2>
+          <ol>
+            <li>
+              <input type="radio" name="qes3" id="3ans1" value="1" />
+              <label for="3ans1">&lt;heading&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes3" id="3ans2" value="2" />
+              <label for="3ans2">&lt;h6&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes3" id="3ans3" value="3" />
+              <label for="3ans3">&lt;head&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes3" id="3ans4" value="4" />
+              <label for="3ans4">&lt;h1&gt;</label>
+            </li>
+          </ol>
+        </div>
+        <div class="set4 none" id="set4">
+          <h2 id="qest4">
+            <span class="big">4</span>.Which tag is used to display an image on
+            a webpage?
+          </h2>
+          <ol>
+            <li>
+              <input type="radio" name="qes4" id="4ans1" value="1" />
+              <label for="4ans1">&lt;picture&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes4" id="4ans2" value="2" />
+              <label for="4ans2">&lt;image&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes4" id="4ans3" value="3" />
+              <label for="4ans3">&lt;img&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes4" id="4ans4" value="4" />
+              <label for="4ans4">&lt;src&gt;</label>
+            </li>
+          </ol>
+        </div>
+        <div class="set5 none" id="set5">
+          <h2 id="qest5">
+            <span class="big">5</span>.Which HTML tag creates an ordered
+            (numbered) list?
+          </h2>
+          <ol>
+            <li>
+              <input type="radio" name="qes5" id="5ans1" value="1" />
+              <label for="5ans1">&lt;ul&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes5" id="5ans2" value="2" />
+              <label for="5ans2">&lt;ol&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes5" id="5ans3" value="3" />
+              <label for="5ans3">&lt;li&gt;</label>
+            </li>
+            <li>
+              <input type="radio" name="qes5" id="5ans4" value="4" />
+              <label for="5ans4">&lt;list&gt;</label>
+            </li>
+          </ol>
+        </div>
+        <div class="set6 none" id="set6">
+          <p id="display" class="display"></p>
+        </div>
+
+        <button type="reset" id="reset">Reset</button>
+        <button type="submit" id="next">Next</button>
+      </form>
+      <a href="/index.html">Home</a>
+    </div>
+    <script src="quiz.js"></script>
+  </body>
+</html>

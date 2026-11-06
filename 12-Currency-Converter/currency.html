@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="card-container currency">
+      <h1>Currency Converter</h1>
+      <p id="display">00</p>
+      <form action="">
+        <input
+          type="number"
+          name="number"
+          id="number"
+          class="c-number"
+          required
+        />
+        <select name="from" id="from" required>
+          <option value="">Select Value</option>
+          <option value="USD">USD</option>
+          <option value="INR">INR</option>
+          <option value="EUR">EURO</option>
+        </select>
+        <select name="to" id="to" required>
+          <option value="">Select Value</option>
+          <option value="USD">USD</option>
+          <option value="INR">INR</option>
+          <option value="EUR">EURO</option>
+        </select>
+        <button type="submit" id="submit">Convert</button>
+      </form>
+
+      <a href="/index.html">Home</a>
+    </div>
+    <script src="currency.js"></script>
+  </body>
+</html>

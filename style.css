@@ -105,3 +105,127 @@ button:first-of-type {
 .list-container > li {
   text-align: left;
 }
+
+/* Quote Generator */
+
+.quote-container {
+  width: 60rem;
+  height: 20rem;
+}
+
+.quote-container p {
+  font-size: 2rem;
+}
+
+/* Password Generator */
+.stop {
+  width: 30rem;
+}
+
+.pass {
+  width: 64rem;
+}
+
+.pass .display {
+  text-transform: none;
+  font-size: 2rem;
+}
+
+.small {
+  display: inline-block;
+  font-size: 1rem;
+  margin: none;
+}
+
+/* Image Slider */
+
+.show {
+  width: 32rem;
+  height: 18rem;
+  border: 2px solid var(--c-dark-blue);
+  margin-block-end: 1rem;
+}
+
+.show img {
+  width: 100%;
+  height: auto;
+}
+
+/* Whether App */
+
+.whether {
+  width: 30rem;
+}
+
+.whether p {
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+
+.whether input {
+  height: 1.75rem;
+}
+
+/* Currency Converter */
+
+.currency p {
+  font-size: 3rem;
+}
+
+.currency inpui,
+.currency select {
+  height: 1.75rem;
+}
+
+.c-number {
+  width: 6rem;
+  height: 1.375rem;
+}
+
+/* Quiz App */
+
+.quiz {
+  width: 36rem;
+  height: 19rem;
+}
+
+.quiz h2 {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+
+.quiz ol {
+  padding-inline-start: 175px;
+  list-style-type: upper-alpha;
+}
+.none {
+  display: none;
+}
+
+li {
+  text-align: left;
+  text-transform: lowercase;
+}
+
+.set1 ol li {
+  text-transform: capitalize;
+}
+
+.quiz .display {
+  font-size: 2rem;
+}
+
+.big {
+  font-size: 1.5rem;
+}
+
+.quiz .set2 ol,
+.quiz .set3 ol,
+.quiz .set4 ol,
+.quiz .set5 ol {
+  padding-inline-start: 260px;
+}
+
+.quiz ol li {
+  padding-block: 4px;
+}

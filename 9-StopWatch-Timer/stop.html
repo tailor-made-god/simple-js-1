@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StopWatch and Timer</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="card-container stop">
+      <div class="stopWatch">
+        <h1>Stop Watch</h1>
+        <p id="display">00: 00: 00: 00</p>
+        <button id="start">Start</button>
+        <button id="pause">Pause</button>
+        <button id="reset">Reset</button>
+      </div>
+      <div class="Timer">
+        <h1>Timer</h1>
+        <input
+          type="number"
+          name="input"
+          id="tinputh"
+          min="1"
+          max="60"
+          value="0"
+        />
+        <p id="tinputdisplayh " class="small">HR</p>
+        <input
+          type="number"
+          name="input"
+          id="tinput"
+          min="1"
+          max="60"
+          value="5"
+        />
+        <p id="tinputdisplay" class="small">MIN</p>
+        <p id="tdisplay">00:05:00</p>
+        <button id="tstart">Start</button>
+        <button id="tpause">Pause</button>
+        <button id="treset">Reset</button>
+      </div>
+      <a href="/index.html">Home</a>
+    </div>
+    <script src="stop.js"></script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+:root {
+  --page-bg: #f1efe8;
+  --card-bg: #ffffff;
+  --border: #d3d1c7;
+  --text-primary: #2c2c2a;
+  --text-secondary: #5f5e5a;
+  --text-muted: #888780;
+  --income-bg: #eaf3de;
+  --income-text: #27500a;
+  --expense-bg: #fcebeb;
+  --expense-text: #791f1f;
+  --button-border: #b4b2a9;
+  --button-hover: #f1efe8;
+  --primary: #185fa5;
+  --radius-card: 12px;
+  --radius-control: 8px;
+}
+
+*,
+*::before,
+*:after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+}
+
+h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-primary);
+}
+.card-container {
+  width: 30rem;
+  height: 20rem;
+  border: 1px solid black;
+  padding: 1.25rem;
+  border-radius: var(--radius-card);
+  background-color: var(--page-bg);
+}
+.balance-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 5rem;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-control);
+  text-align: center;
+}
+
+.income-card {
+  width: 100%;
+  height: 4rem;
+}
+
+.name {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.number {
+  font-size: 2rem;
+}
