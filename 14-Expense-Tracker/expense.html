@@ -12,19 +12,156 @@
       <div class="show">
         <div class="balance-card">
           <p class="name">Your Balance</p>
-          <p class="balance number">₹ 18,500</p>
+          <p class="balance number" id="balance">₹ 18,500</p>
         </div>
         <div class="income-card">
           <p class="name">Income</p>
-          <p class="income number">₹ 30000</p>
+          <p class="income number" id="income">₹ 30000</p>
         </div>
         <div class="expenses-card">
           <p class="name">Expenses</p>
-          <p class="expenses number">₹ 11500</p>
+          <p class="expenses number" id="expenses">₹ 11500</p>
         </div>
       </div>
-      <div class="input"></div>
-      <div class="history"></div>
+
+      <form action="" class="input">
+        <p>Add new entry</p>
+        <input
+          type="text"
+          class="description height"
+          name="description"
+          id="description"
+          placeholder="Description, e.g. Wedding shoot"
+          required
+        />
+        <input
+          type="number"
+          class="amout height"
+          name="amount"
+          id="amount"
+          placeholder="Amount"
+          min="1"
+          required
+        />
+        <select name="choose" class="choose height" id="choose">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+
+        <button type="submit" id="result" class="result height">
+          Add entry
+        </button>
+      </form>
+
+      <h3>History</h3>
+
+      <div class="history" id="history">
+        <template id="template">
+          <div class="sets t-sets">
+            <h4 class="setname t-setname">Photo shoot payment</h4>
+            <p class="choosen t-choosen">Income</p>
+            <div class="wrap t-wrap">
+              <p class="show-number t-show-number">+ ₹ 30000</p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="#5f5e5a"
+                class="delete"
+              >
+                <path
+                  d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </template>
+        <!-- <div class="sets">
+          <h4 class="setname">Photo shoot payment</h4>
+          <p class="choosen">Income</p>
+          <div class="wrap">
+            <p class="show-number green">+ ₹ 30000</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="#5f5e5a"
+            >
+              <path
+                d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="sets">
+          <h4 class="setname">Rent</h4>
+          <p class="choosen">Expense</p>
+          <div class="wrap">
+            <p class="show-number red">- ₹ 8000</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="#5f5e5a"
+            >
+              <path
+                d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="sets">
+          <h4 class="setname">Groceries</h4>
+          <p class="choosen">Expense</p>
+          <div class="wrap">
+            <p class="show-number red">- ₹ 2500</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="#5f5e5a"
+            >
+              <path
+                d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="sets">
+          <h4 class="setname">Internet Bill</h4>
+          <p class="choosen">Expense</p>
+          <div class="wrap">
+            <p class="show-number red">- ₹ 1000</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="#5f5e5a"
+            >
+              <path
+                d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"
+              ></path>
+            </svg>
+          </div>
+        </div> -->
+      </div>
     </div>
+    <a href="/index.html" class="home">Home</a>
   </body>
+  <script src="expense.js"></script>
 </html>

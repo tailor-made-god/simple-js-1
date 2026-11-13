@@ -2,6 +2,11 @@ let getDisplay = document.getElementById("display");
 let getStart = document.getElementById("start");
 let getPause = document.getElementById("pause");
 let getReset = document.getElementById("reset");
+let getSwitch = document.getElementById("switch");
+let getPage1 = document.getElementById("page1");
+let getPage2 = document.getElementById("page2");
+
+let page = 1;
 
 let sec = 0;
 let min = 0;
@@ -110,4 +115,16 @@ getTreset.addEventListener("click", () => {
   tSec = 60;
 
   getTdisplay.innerHTML = "00 : 00 : 00";
+});
+
+getSwitch.addEventListener("click", () => {
+  if (page === 1) {
+    getPage1.classList.add("none");
+    getPage2.classList.remove("none");
+    page = 2;
+  } else if (page === 2) {
+    getPage2.classList.add("none");
+    getPage1.classList.remove("none");
+    page = 1;
+  }
 });

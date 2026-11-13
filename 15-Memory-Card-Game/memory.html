@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" href="memory.css" />
+  </head>
+  <body>
+    <div class="card-container">
+      <h1>Memory Card Game</h1>
+      <div class="display">
+        <p id="move">Move: 0</p>
+        <p id="done">Matched: 0/8</p>
+        <p id="timer">Time: 0:00</p>
+      </div>
+      <div class="cards none" id="cards">
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+        <div class="card covered"></div>
+      </div>
+      <div class="won" id="won">Congrats, you won!</div>
+      <button id="reset" class="reset">Reset</button>
+      <a href="/index.html">Home</a>
+    </div>
+    <script src="memory.js"></script>
+  </body>
+</html>

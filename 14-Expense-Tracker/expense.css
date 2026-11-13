@@ -5,10 +5,10 @@
   --text-primary: #2c2c2a;
   --text-secondary: #5f5e5a;
   --text-muted: #888780;
-  --income-bg: #eaf3de;
-  --income-text: #27500a;
-  --expense-bg: #fcebeb;
-  --expense-text: #791f1f;
+  --income-bg: #caeac7;
+  --income-text: #006300;
+  --expense-bg: #fad6d6;
+  --expense-text: #8e2626;
   --button-border: #b4b2a9;
   --button-hover: #f1efe8;
   --primary: #185fa5;
@@ -27,6 +27,7 @@ body {
   display: grid;
   min-height: 100vh;
   place-items: center;
+  background-color: var(--expense-bg);
 }
 
 h1 {
@@ -37,33 +38,184 @@ h1 {
 }
 .card-container {
   width: 30rem;
-  height: 20rem;
+  /* height: 20rem; */
   border: 1px solid black;
   padding: 1.25rem;
   border-radius: var(--radius-card);
   background-color: var(--page-bg);
 }
+
+.show {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+}
+
 .balance-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  grid-column: 1 / -1;
   width: 100%;
   height: 5rem;
   background-color: var(--card-bg);
   border-radius: var(--radius-control);
   text-align: center;
+  border: 1px solid var(--border);
 }
 
-.income-card {
+.income-card,
+.expenses-card {
   width: 100%;
-  height: 4rem;
+  /* height: 4rem; */
+  padding: 1rem;
+  border-radius: var(--radius-control);
 }
-
 .name {
   font-size: 0.875rem;
+}
+
+.balance-card .name {
   color: var(--text-secondary);
 }
 
+.income-card {
+  color: var(--income-text);
+  background-color: var(--income-bg);
+}
+
+.expenses-card {
+  color: var(--expense-text);
+  background-color: var(--expense-bg);
+}
+
 .number {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-block-start: 2px;
+}
+
+.balance-card .number {
   font-size: 2rem;
+  margin-block-start: 0;
+}
+
+/* Input Section */
+
+.input {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  margin-block: 1rem;
+}
+
+.input p {
+  grid-column: 1 / -1;
+}
+
+.description {
+  grid-column: 1 / -1;
+}
+
+.result {
+  grid-column: 1 / -1;
+}
+
+.height {
+  height: 2.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+}
+
+.height:not(:last-child) {
+  padding-inline-start: 0.5rem;
+}
+
+.result {
+  background-color: var(--card-bg);
+}
+
+/* History Section */
+
+.history {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border);
+}
+
+.sets {
+  width: 100%;
+  height: 5rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: auto auto;
+  padding: 0 1rem;
+  border-block-end: 1px solid var(--border);
+}
+
+h3 {
+  font-weight: 400;
+}
+
+h4 {
+  align-self: end;
+  font-weight: 400;
+}
+
+.delete:before {
+}
+
+.wrap {
+  grid-row: 1 / -1;
+  grid-column: 2 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 0.5rem;
+}
+.choosen {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  height: 1.25rem;
+  margin-block-start: 4px;
+}
+
+.show-number {
+  font-size: 1rem;
+  /* font-weight: 600; */
+}
+
+.red {
+  color: var(--expense-text);
+}
+
+.green {
+  color: var(--income-text);
+}
+
+.setname {
+  text-transform: capitalize;
+}
+.choosen {
+  text-transform: capitalize;
+}
+
+.home {
+  padding: 1rem 3rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--primary);
+  background-color: var(--income-bg);
+  border-radius: var(--radius-control);
+  border: 1px solid var(--border);
+}
+
+.home:hover {
+  background-color: var(--primary);
+  color: var(--income-bg);
+  border-color: var(--text-primary);
 }

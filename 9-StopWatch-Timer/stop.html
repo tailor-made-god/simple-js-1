@@ -8,14 +8,16 @@
   </head>
   <body>
     <div class="card-container stop">
-      <div class="stopWatch">
+      <button id="switch" class="s-switch">Timer</button>
+      <div class="stopWatch" id="page1">
         <h1>Stop Watch</h1>
+
         <p id="display">00: 00: 00: 00</p>
         <button id="start">Start</button>
         <button id="pause">Pause</button>
         <button id="reset">Reset</button>
       </div>
-      <div class="Timer">
+      <div class="Timer none" id="page2">
         <h1>Timer</h1>
         <input
           type="number"

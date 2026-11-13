@@ -19,7 +19,7 @@ body {
   border-radius: 5px;
   text-align: center;
   text-transform: uppercase;
-  margin-block-end: 10rem;
+  /* margin-block-end: 10rem; */
   background-color: var(--c-light-gray);
 }
 
@@ -120,6 +120,7 @@ button:first-of-type {
 /* Password Generator */
 .stop {
   width: 30rem;
+  position: relative;
 }
 
 .pass {
@@ -135,6 +136,14 @@ button:first-of-type {
   display: inline-block;
   font-size: 1rem;
   margin: none;
+}
+
+/* StopWatch and Timer  */
+
+.s-switch {
+  position: absolute;
+  right: 30px;
+  top: 53px;
 }
 
 /* Image Slider */
