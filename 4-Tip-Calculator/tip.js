@@ -1,12 +1,20 @@
 let getBill = document.getElementById("bill");
 let getTip = document.getElementById("tip");
-let btnSubmit = document.getElementById("submit");
+let myform = document.getElementById("myform");
 let getDisplay = document.getElementById("display");
 
 let showBill = document.getElementById("show-bill");
 let total = document.getElementById("total");
 
-btnSubmit.addEventListener("click", () => {
-  let result = (getBill.value * getTip.value) / 100;
-  getDisplay.innerHTML = result;
+myform.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const billAmount = Number(getBill.value);
+  const tipPercentage = Number(getTip.value);
+
+  const tipAmount = (billAmount * tipPercentage) / 100;
+  const totalAmount = billAmount + tipAmount;
+
+  showBill.innerHTML = `Bill: ₹${billAmount.toFixed(2)}`;
+  getDisplay.innerHTML = `Tip: ₹${tipAmount.toFixed(2)}`;
+  total.innerHTML = `Total: ₹${totalAmount.toFixed(2)}`;
 });

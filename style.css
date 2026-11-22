@@ -56,6 +56,22 @@ a:hover {
   color: var(--c-light-gray);
 }
 
+/* Digital Clock  */
+.time-seconds {
+  font-size: 3.5rem;
+}
+
+/* Tip Calculator  */
+.tip {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20rem;
+}
+.tip p {
+  font-size: 1.5rem;
+}
+
 /* Simple Calculator */
 button:first-of-type {
   margin: 0;
@@ -63,8 +79,8 @@ button:first-of-type {
 
 .calc {
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-template-rows: repeat(7, auto);
+  grid-template-columns: repeat(4, auto);
+  width: fit-content;
 }
 
 .calc button {
@@ -74,24 +90,31 @@ button:first-of-type {
 }
 
 .calc h1 {
-  grid-column: 1 / end;
+  grid-column: 1 / -1;
 }
 
 .calc .cover {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   grid-row: 2 / 3;
-  grid-column: 1 / end;
+  grid-column: 1 / -1;
   width: 100%;
   height: 5rem;
   border: 1px solid black;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 .calc a {
-  grid-column: 1 / end;
+  grid-column: 1 / -1;
+}
+
+.calc .cover {
+  width: 16rem;
 }
 
 .calc .text-box {
+  width: 100%;
   font-size: 2rem;
   margin: 0;
 }
@@ -99,11 +122,30 @@ button:first-of-type {
 /* To-do List */
 
 .list-container {
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 2rem;
 }
 
 .list-container > li {
   text-align: left;
+  margin-block-end: 0.5rem;
+}
+
+.todo-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-btn {
+  font-size: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  margin-inline-start: 1rem;
+  background-color: hsla(0, 49%, 49%, 0.3);
+  cursor: pointer;
+}
+
+.completed label {
+  text-decoration: line-through;
 }
 
 /* Quote Generator */
@@ -130,25 +172,33 @@ button:first-of-type {
 .pass .display {
   text-transform: none;
   font-size: 2rem;
+  word-break: break-all;
 }
 
 .small {
   display: inline-block;
   font-size: 1rem;
-  margin: none;
+  margin: 0;
 }
 
 /* StopWatch and Timer  */
-
+.stop {
+  width: 32rem;
+}
 .s-switch {
   position: absolute;
   right: 30px;
   top: 53px;
 }
 
+.stop .display {
+  margin-block-end: 2rem;
+}
+
 /* Image Slider */
 
 .show {
+  position: relative;
   width: 32rem;
   height: 18rem;
   border: 2px solid var(--c-dark-blue);
@@ -157,21 +207,48 @@ button:first-of-type {
 
 .show img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-/* Whether App */
+.image-slider .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
 
-.whether {
+.image-slider .arrow {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+  left: 16px;
+}
+
+.next {
+  right: -20px;
+}
+
+/* Weather App */
+
+.weather {
   width: 30rem;
 }
 
-.whether p {
+.weather p {
   font-size: 2rem;
   text-transform: capitalize;
 }
 
-.whether input {
+.weather input {
   height: 1.75rem;
 }
 
@@ -181,7 +258,7 @@ button:first-of-type {
   font-size: 3rem;
 }
 
-.currency inpui,
+.currency input,
 .currency select {
   height: 1.75rem;
 }
@@ -194,24 +271,25 @@ button:first-of-type {
 /* Quiz App */
 
 .quiz {
-  width: 36rem;
-  height: 19rem;
+  width: min(36rem, 95vw);
+  min-height: 19rem;
 }
 
 .quiz h2 {
   font-size: 1.25rem;
-  text-transform: capitalize;
 }
 
 .quiz ol {
-  padding-inline-start: 175px;
+  width: fit-content;
+  margin: 0 auto;
+  padding-inline-start: 1.5rem;
   list-style-type: upper-alpha;
 }
 .none {
   display: none;
 }
 
-li {
+.quiz li {
   text-align: left;
   text-transform: lowercase;
 }
@@ -228,13 +306,24 @@ li {
   font-size: 1.5rem;
 }
 
-.quiz .set2 ol,
-.quiz .set3 ol,
-.quiz .set4 ol,
-.quiz .set5 ol {
-  padding-inline-start: 260px;
+.error-msg {
+  color: #d93025;
+  min-height: 1.25rem;
+  font-size: 0.95rem;
+}
+.quiz.correct {
+  background-color: #86efac;
+  border-color: #15803d;
 }
 
-.quiz ol li {
-  padding-block: 4px;
+.quiz.wrong {
+  background-color: #fca5a5;
+  border-color: #b91c1c;
+}
+
+.quiz .progress {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-block: 0.25rem 0.75rem;
 }

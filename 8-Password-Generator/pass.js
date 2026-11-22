@@ -25,17 +25,16 @@ function getNumbers() {
 }
 
 function getSymbols() {
-  const combo = "!@#$%^&*()-_=+?.,";
+  const combo = "!@#$%^&*()-_=+?.,<>";
   return combo.charAt(Math.floor(Math.random() * combo.length));
 }
 
-const allFunctions = [];
-
-getLength.addEventListener("change", () => {
-  getLengthDisplay.innerHTML = "Length: " + getLength.value;
+getLength.addEventListener("input", () => {
+  getLengthDisplay.textContent = "Length: " + getLength.value;
 });
 
 getSubmit.addEventListener("click", () => {
+  const allFunctions = [];
   if (getLow.checked) {
     allFunctions.push(getLowerCases);
   }
@@ -49,16 +48,27 @@ getSubmit.addEventListener("click", () => {
     allFunctions.push(getSymbols);
   }
 
-  const finalLength = Number(getLength.value);
-
-  let finalResult = "";
-
-  for (let i = 0; i < finalLength; i++) {
-    const resultEach = Math.floor(Math.random() * allFunctions.length);
-    const charEach = allFunctions[resultEach];
-    const transfer = charEach();
-    finalResult = finalResult + transfer;
+  if (allFunctions.length === 0) {
+    getDisplay.innerHTML = "What you are Generating? Air?";
+    return;
   }
 
-  getDisplay.innerHTML = finalResult;
+  const finalLength = Number(getLength.value);
+  const resultChars = [];
+
+  for (let i = 0; i < Math.min(finalLength, allFunctions.length); i++) {
+    resultChars.push(allFunctions[i]());
+  }
+
+  for (let i = resultChars.length; i < finalLength; i++) {
+    const randomIndex = Math.floor(Math.random() * allFunctions.length);
+    resultChars.push(allFunctions[randomIndex]());
+  }
+
+  for (let i = resultChars.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [resultChars[i], resultChars[j]] = [resultChars[j], resultChars[i]];
+  }
+
+  getDisplay.textContent = resultChars.join("");
 });

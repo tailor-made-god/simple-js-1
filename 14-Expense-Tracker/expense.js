@@ -1,23 +1,43 @@
-let getBalance = document.getElementById("balance");
-let getIncome = document.getElementById("income");
-let getExpenses = document.getElementById("expenses");
+const getBalance = document.getElementById("balance");
+const getIncome = document.getElementById("income");
+const getExpenses = document.getElementById("expenses");
 
-let getDesc = document.getElementById("description");
-let getAmount = document.getElementById("amount");
-let getChoose = document.getElementById("choose");
-let getResult = document.getElementById("result");
+const form = document.querySelector("form");
+const getDesc = document.getElementById("description");
+const getAmount = document.getElementById("amount");
+const getChoose = document.getElementById("choose");
 
-let getHistory = document.getElementById("history");
+const getHistory = document.getElementById("history");
+const template = document.getElementById("template");
 
-localStorage.setItem("balVal", "18500");
-localStorage.setItem("incVal", "30000");
-localStorage.setItem("expVal", "11500");
+let entries = JSON.parse(localStorage.getItem("expenceEntries")) || [];
 
-let balVal = Number(localStorage.getItem("balVal"));
-let incVal = Number(localStorage.getItem("incVal"));
-let expVal = Number(localStorage.getItem("expVal"));
+function saveAndRender() {
+  localStorage.setItem("expenceEntries", JSON.stringify(entries));
 
-const entries = [{ yes: "no" }];
+  let incVal = 0;
+  let expVal = 0;
+
+  getHistory.querySelectorAll(".t-sets").forEach((el) => {
+    e.remove();
+  });
+
+  entries.forEach((entry) => {
+    const isIncome = entry.type === "income";
+    if (isIncome) {
+      incVal += entry.getAmount;
+    } else {
+      expVal += entry.getAmount;
+    }
+
+    const clone = template.content.cloneNode(true);
+    const amountEl = clone.querySelector(".t-show-number");
+    clone.querySelector(".t-setname").textContent = gotDesc;
+    clone.querySelector(".t-choosen").textContent = gotChoose;
+    amountEl.textContent = `${isIncome ? "+" : "-"} ₹ ${entry.amount.toLocalString("en-IN")}`;
+    amountEl.classList.add(isIncome ? "green" : "red");
+  });
+}
 
 function calculate(event) {
   event.preventDefault();
@@ -57,10 +77,6 @@ function calculate(event) {
     entries.push(newEntry);
   }
 
-  const clone = template.content.cloneNode(true);
-
-  clone.querySelector(".t-setname").textContent = gotDesc;
-  clone.querySelector(".t-choosen").textContent = gotChoose;
   clone.querySelector(".t-show-number").textContent =
     symbol + " ₹ " + gotAmount;
   clone.querySelector(".t-show-number").classList.add(color);

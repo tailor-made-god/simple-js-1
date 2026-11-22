@@ -1,6 +1,8 @@
 let getDisplay = document.getElementById("display");
 let getSubmit = document.getElementById("submit");
 
+let lastIndex = -1;
+
 const quotes = [
   '"The secret of getting ahead is getting started." — Mark Twain',
   '"Knowing yourself is the beginning of all wisdom." — Aristotle',
@@ -15,6 +17,11 @@ const quotes = [
 ];
 
 getSubmit.addEventListener("click", () => {
-  const number = Math.floor(Math.random() * 10);
+  let number;
+  do {
+    number = Math.floor(Math.random() * quotes.length);
+  } while (number === lastIndex && quotes.length > 1);
+
+  lastIndex = number;
   getDisplay.innerHTML = quotes[number];
 });

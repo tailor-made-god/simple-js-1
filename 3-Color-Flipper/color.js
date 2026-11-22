@@ -1,7 +1,10 @@
+function randomNumber() {
+  return Math.floor(Math.random() * 256);
+}
+
 function changeColor() {
-  let red = Math.random() * 256;
-  let green = Math.random() * 256;
-  let blue = Math.random() * 256;
-  document.body.style.backgroundColor =
-    "rgb(" + red + ", " + green + ", " + blue + ")";
+  let red = randomNumber();
+  let green = randomNumber();
+  let blue = randomNumber();
+  document.body.style.backgroundColor = `rgb(${red},${blue},${green})`;
 }

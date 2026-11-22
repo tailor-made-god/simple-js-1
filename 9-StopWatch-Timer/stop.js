@@ -13,50 +13,49 @@ let min = 0;
 let hr = 0;
 let ms = 0;
 
-let timerRunning = false;
 let interval = null;
 
+function pad(num) {
+  return String(num).padStart(2, "0");
+}
+
 function stopWatch() {
-  if (timerRunning) {
-    ms++;
-    if (ms === 100) {
-      ms = 0;
-      sec++;
-    }
-
-    if (sec === 60) {
-      sec = 0;
-      min++;
-    }
-
-    if (min === 60) {
-      min = 0;
-      hr++;
-    }
-
-    getDisplay.innerHTML = hr + " : " + min + " : " + sec + " : " + ms;
+  ms++;
+  if (ms === 100) {
+    ms = 0;
+    sec++;
   }
+
+  if (sec === 60) {
+    sec = 0;
+    min++;
+  }
+
+  if (min === 60) {
+    min = 0;
+    hr++;
+  }
+
+  getDisplay.textContent = `${pad(hr)} : ${pad(min)} : ${pad(sec)} : ${pad(ms)}`;
 }
 
 getStart.addEventListener("click", () => {
   clearInterval(interval);
-  timerRunning = true;
-
   interval = setInterval(stopWatch, 10);
 });
 
 getPause.addEventListener("click", () => {
-  timerRunning = false;
+  clearInterval(interval);
 });
 
 getReset.addEventListener("click", () => {
-  timerRunning = false;
+  clearInterval(interval);
   hr = 0;
   min = 0;
   sec = 0;
   ms = 0;
 
-  getDisplay.innerHTML = hr + " : " + min + " : " + sec + " : " + ms;
+  getDisplay.innerHTML = "00 : 00 : 00 : 00";
 });
 
 // TIMER
@@ -67,62 +66,86 @@ let getTpause = document.getElementById("tpause");
 let getTreset = document.getElementById("treset");
 
 let tInput = document.getElementById("tinput");
-let tInputDisplay = document.getElementById("tinputdisplay");
 let tInputH = document.getElementById("tinputh");
 
 let tHr = 0;
 let tMin = 0;
-let tSec = 60;
+let tSec = 0;
 
-let tRunning = false;
+let isPaused = false;
 let interval2 = null;
 
 function Timer() {
-  tMin = tInput.value;
-  tHr = tInputH.value;
-  if (tRunning) {
-    tSec--;
-    tMin--;
-    if (tSec === 0) {
-      tSec = 59;
-      tMin--;
-    }
-
-    if (tMin === 0) {
-      tMin = 59;
-      tHr--;
-    }
-
-    getTdisplay.innerHTML = tHr + " : " + tMin + " : " + tSec;
+  if (tHr === 0 && tMin === 0 && tSec === 0) {
+    clearInterval(interval2);
+    isPaused = false;
+    getTstart.disabled = false;
+    getTdisplay.textContent = "Time's Up!";
+    return;
   }
+
+  if (tSec === 0) {
+    if (tMin === 0) {
+      tHr--;
+      tMin = 59;
+      tSec = 59;
+    } else {
+      tMin--;
+      tSec = 59;
+    }
+  } else {
+    tSec--;
+  }
+
+  getTdisplay.textContent = `${pad(tHr)} : ${pad(tMin)} : ${pad(tSec)}`;
 }
 
 getTstart.addEventListener("click", () => {
   clearInterval(interval2);
-  tRunning = true;
+  if (!isPaused) {
+    tHr = Math.max(0, Number(tInputH.value));
+    tMin = Math.max(0, Number(tInput.value));
+    tSec = 0;
+  }
+  if (tHr === 0 && tMin === 0 && tSec === 0) {
+    return;
+  }
+
+  isPaused = false;
+  getTstart.disabled = true;
+  getTdisplay.textContent = `${pad(tHr)} : ${pad(tMin)} : ${pad(tSec)}`;
   interval2 = setInterval(Timer, 1000);
 });
 
 getTpause.addEventListener("click", () => {
-  tRunning = false;
+  clearInterval(interval2);
+  if (tHr > 0 || tMin > 0 || tSec > 0) {
+    isPaused = true;
+    getTstart.disabled = false;
+  }
 });
 
 getTreset.addEventListener("click", () => {
-  tRunning = false;
+  clearInterval(interval2);
+  isPaused = false;
+  getTstart.disabled = false;
 
-  tHr = 0;
-  tMin = 0;
-  tSec = 60;
+  tHr = Math.max(0, Number(tInputH.value));
+  tMin = Math.max(0, Number(tInput.value));
+  tSec = 0;
 
-  getTdisplay.innerHTML = "00 : 00 : 00";
+  getTdisplay.innerHTML = `${pad(tHr)} : ${pad(tMin)} : 00`;
 });
 
+// SWITCH
 getSwitch.addEventListener("click", () => {
   if (page === 1) {
+    getSwitch.innerHTML = "StopWatch";
     getPage1.classList.add("none");
     getPage2.classList.remove("none");
     page = 2;
   } else if (page === 2) {
+    getSwitch.innerHTML = "Timer";
     getPage2.classList.add("none");
     getPage1.classList.remove("none");
     page = 1;

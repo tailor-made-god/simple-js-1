@@ -7,17 +7,35 @@
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
-    <div class="card-container">
-      <h1>Tip Calculator</h1>
-      <label for="bill">Bill Amount</label>
-      <input type="number" name="bill" id="bill" min="0" required />
-      <label for="tip">Tip Percentage</label>
-      <input type="number" name="tip" id="tip" min="0" required />
-      <button type="submit" id="submit">Calculate</button>
-      <p id="display"></p>
+    <form class="card-container tip" id="myform">
+      <div class="tip-wrap">
+        <h1>Tip Calculator</h1>
+        <label for="bill">Bill Amount</label>
+        <input type="number" name="bill" id="bill" min="0" step="1" required />
+        <label for="tip">Tip Percentage</label>
+        <input
+          type="number"
+          name="tip"
+          id="tip"
+          list="tip-presets"
+          min="0"
+          required
+        />
+        <datalist id="tip-presets">
+          <option value="18">10%</option>
+          <option value="20">20%</option>
+          <option value="25">25%</option>
+        </datalist>
+        <button type="submit" id="submit">Calculate</button>
+        <p id="show-bill"></p>
+        <p id="display"></p>
+        <p id="total"></p>
+      </div>
 
-      <a href="/index.html">Home</a>
-    </div>
+      <div class="tip-wrap">
+        <a href="/index.html">Home</a>
+      </div>
+    </form>
     <script src="tip.js"></script>
   </body>
 </html>

@@ -1,30 +1,48 @@
 let getList = document.getElementById("list");
 let getItem = document.getElementById("item");
-let getAdd = document.getElementById("add");
+let getMyForm = document.getElementById("myform");
 
-getAdd.addEventListener("click", () => {
-  getList.insertAdjacentHTML(
-    "beforeend",
-    "<li><input type='checkbox'>" + getItem.value.trim() + "</li>",
-  );
-  getItem.value = "";
-});
+getMyForm.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-// Enter Key Function
-
-getItem.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    getAdd.click();
+  const text = getItem.value.trim();
+  if (!text) {
+    return;
   }
+
+  const li = document.createElement("li");
+  const row = document.createElement("div");
+  row.className = "todo-row";
+
+  const label = document.createElement("label");
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.type = "button";
+  deleteBtn.textContent = "Delete";
+  deleteBtn.className = "delete-btn";
+
+  label.append(checkbox, " ", text);
+  row.append(label, deleteBtn);
+  li.append(row);
+  getList.appendChild(li);
+
+  getItem.value = "";
+  getItem.focus();
 });
 
 // Checkbox CrossOut
 
 getList.addEventListener("change", (e) => {
-  if (e.target.checked) {
-    e.target.parentElement.style.textDecoration = "line-through";
-  } else {
-    e.target.parentElement.style.textDecoration = "none";
+  if (e.target.type === "checkbox") {
+    e.target.closest("li").classList.toggle("completed", e.target.checked);
+  }
+});
+
+// Delete Function
+getList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    e.target.closest("li").remove();
   }
 });

@@ -10,12 +10,14 @@
     <div class="card-container currency">
       <h1>Currency Converter</h1>
       <p id="display">00</p>
-      <form action="">
+      <form action="" id="myform">
         <input
           type="number"
           name="number"
           id="number"
           class="c-number"
+          step="any"
+          min="0"
           required
         />
         <select name="from" id="from" required>
