@@ -19,98 +19,58 @@ function saveAndRender() {
   let expVal = 0;
 
   getHistory.querySelectorAll(".t-sets").forEach((el) => {
-    e.remove();
+    el.remove();
   });
 
   entries.forEach((entry) => {
     const isIncome = entry.type === "income";
     if (isIncome) {
-      incVal += entry.getAmount;
+      incVal += entry.amount;
     } else {
-      expVal += entry.getAmount;
+      expVal += entry.amount;
     }
 
     const clone = template.content.cloneNode(true);
     const amountEl = clone.querySelector(".t-show-number");
-    clone.querySelector(".t-setname").textContent = gotDesc;
-    clone.querySelector(".t-choosen").textContent = gotChoose;
-    amountEl.textContent = `${isIncome ? "+" : "-"} ₹ ${entry.amount.toLocalString("en-IN")}`;
+    clone.querySelector(".t-setname").textContent = entry.desc;
+    clone.querySelector(".t-choosen").textContent = entry.type;
+    amountEl.textContent = `${isIncome ? "+" : "-"} ₹ ${entry.amount.toLocaleString("en-IN")}`;
     amountEl.classList.add(isIncome ? "green" : "red");
+
+    clone.querySelector(".delete").addEventListener("click", () => {
+      entries = entries.filter((item) => item.id !== entry.id);
+      saveAndRender();
+    });
+
+    getHistory.prepend(clone);
   });
+
+  const balVal = incVal - expVal;
+  getIncome.textContent = `₹ ${incVal.toLocaleString("en-IN")}`;
+  getExpenses.textContent = `₹ ${expVal.toLocaleString("en-IN")}`;
+  getBalance.textContent = `₹ ${balVal.toLocaleString("en-IN")}`;
 }
 
 function calculate(event) {
   event.preventDefault();
-  let gotChoose = getChoose.value;
-  let gotAmount = Number(getAmount.value);
-  let gotDesc = getDesc.value;
-  let color = "";
-  let symbol = "";
-  let newEntry = {};
-  let decide = false;
-  if (gotChoose === "income") {
-    color = "green";
-    symbol = "+";
-    decide = true;
-    incVal = incVal + gotAmount;
-    balVal = balVal + gotAmount;
-    localStorage.setItem("incVal", incVal);
-    localStorage.setItem("balVal", balVal);
-    getIncome.innerHTML = "₹ " + incVal;
-    getBalance.innerHTML = "₹ " + balVal;
+  const gotChoose = getChoose.value;
+  const gotAmount = Number(getAmount.value);
+  const gotDesc = getDesc.value.trim();
 
-    newEntry = { [gotDesc]: gotAmount };
-    entries.push(newEntry);
-
-    console.log(localStorage.getItem("balVal"));
-  } else {
-    color = "red";
-    symbol = "-";
-    expVal = expVal + gotAmount;
-    balVal = balVal - gotAmount;
-    localStorage.setItem("expVal", expVal);
-    localStorage.setItem("balVal", balVal);
-    getExpenses.innerHTML = "₹ " + expVal;
-    getBalance.innerHTML = "₹ " + balVal;
-
-    newEntry = { [gotDesc]: gotAmount };
-    entries.push(newEntry);
+  if (!gotDesc || gotAmount <= 0) {
+    return;
   }
 
-  clone.querySelector(".t-show-number").textContent =
-    symbol + " ₹ " + gotAmount;
-  clone.querySelector(".t-show-number").classList.add(color);
-
-  clone.querySelector(".t-wrap .delete").addEventListener("click", (e) => {
-    const parent = e.target.closest(".t-sets");
-
-    const item = entries.indexOf(newEntry);
-    const values = Object.values(newEntry);
-    if (decide) {
-      incVal = incVal - Number(values);
-      balVal = balVal - Number(values);
-      localStorage.setItem("incVal", incVal);
-      localStorage.setItem("balVal", balVal);
-      getIncome.innerHTML = "₹ " + incVal;
-      getBalance.innerHTML = "₹ " + balVal;
-    } else {
-      expVal = expVal + Number(values);
-      balVal = balVal + Number(values);
-      localStorage.setItem("expVal", expVal);
-      localStorage.setItem("balVal", balVal);
-      getExpenses.innerHTML = "₹ " + expVal;
-      getBalance.innerHTML = "₹ " + balVal;
-    }
-    entries.splice(item, 1);
-
-    parent.remove();
-
-    console.table(entries);
+  entries.push({
+    id: Date.now(),
+    desc: gotDesc,
+    amount: gotAmount,
+    type: gotChoose,
   });
 
-  getHistory.prepend(clone);
+  form.reset();
+  saveAndRender();
 }
 
-getResult.addEventListener("click", calculate);
-
-console.table(entries);
+form.addEventListener("submit", calculate);
+saveAndRender();
