@@ -1,6 +1,6 @@
 let getCount = document.getElementById("count");
-let getReset = document.getElementById("reset");
-let getDisplay = document.getElementById("display");
+const getReset = document.getElementById("reset");
+const getDisplay = document.getElementById("display");
 
 let value = 0;
 

@@ -111,36 +111,34 @@ getCards.addEventListener("click", (e) => {
   if (clickCount === 1) {
     firstClick = clicked;
     one = clicked.textContent;
-  }
-  if (e.target.classList.contains("card")) {
-    if (clickCount === 2) {
-      moveCount++;
-      two = clicked.textContent;
-      clickCount = 0;
-      getMove.textContent = "Move: " + moveCount;
-      isLocked = true;
-      if (one === two) {
-        matchCount++;
-        getDone.textContent = `Matched: ${matchCount}/8`;
+  } else if (clickCount === 2) {
+    moveCount++;
+    two = clicked.textContent;
+    clickCount = 0;
+    getMove.textContent = "Move: " + moveCount;
+    isLocked = true;
+    if (one === two) {
+      matchCount++;
+      getDone.textContent = `Matched: ${matchCount}/8`;
 
-        setTimeout(() => {
-          firstClick.classList.add("matched");
-          clicked.classList.add("matched");
-          isLocked = false;
-          if (matchCount === 8) {
-            getCards.classList.add("none");
-            getWon.classList.remove("none");
-          }
-        }, 500);
-      } else {
-        setTimeout(() => {
-          firstClick.classList.remove("flipped");
-          clicked.classList.remove("flipped");
-          firstClick.classList.add("covered");
-          clicked.classList.add("covered");
-          isLocked = false;
-        }, 500);
-      }
+      setTimeout(() => {
+        firstClick.classList.add("matched");
+        clicked.classList.add("matched");
+        isLocked = false;
+        if (matchCount === 8) {
+          clearInterval(myTimer);
+          getCards.classList.add("none");
+          getWon.classList.remove("none");
+        }
+      }, 500);
+    } else {
+      setTimeout(() => {
+        firstClick.classList.remove("flipped");
+        clicked.classList.remove("flipped");
+        firstClick.classList.add("covered");
+        clicked.classList.add("covered");
+        isLocked = false;
+      }, 500);
     }
   }
 });

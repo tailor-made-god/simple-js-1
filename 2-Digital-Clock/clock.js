@@ -1,4 +1,4 @@
-let getDisplay = document.getElementById("display");
+const getDisplay = document.getElementById("display");
 
 function clock() {
   const now = new Date();

@@ -1,5 +1,5 @@
-let getDisplay = document.getElementById("display");
-let getSubmit = document.getElementById("submit");
+const getDisplay = document.getElementById("display");
+const getSubmit = document.getElementById("submit");
 
 let lastIndex = -1;
 
@@ -23,5 +23,5 @@ getSubmit.addEventListener("click", () => {
   } while (number === lastIndex && quotes.length > 1);
 
   lastIndex = number;
-  getDisplay.innerHTML = quotes[number];
+  getDisplay.textContent = quotes[number];
 });

@@ -6,7 +6,7 @@ let imageNumber = 1;
 const totalImages = 5;
 
 function updateSlider() {
-  getImage.src = `../10-Image-Slider/Images/image${imageNumber}.jpg`;
+  getImage.src = `./Images/image${imageNumber}.jpg`;
 }
 
 getPrev.addEventListener("click", () => {

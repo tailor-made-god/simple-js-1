@@ -3,8 +3,8 @@ function randomNumber() {
 }
 
 function changeColor() {
-  let red = randomNumber();
-  let green = randomNumber();
-  let blue = randomNumber();
-  document.body.style.backgroundColor = `rgb(${red},${blue},${green})`;
+  const red = randomNumber();
+  const green = randomNumber();
+  const blue = randomNumber();
+  document.body.style.backgroundColor = `rgb(${red},${green},${blue})`;
 }

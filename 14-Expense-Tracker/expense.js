@@ -10,10 +10,10 @@ const getChoose = document.getElementById("choose");
 const getHistory = document.getElementById("history");
 const template = document.getElementById("template");
 
-let entries = JSON.parse(localStorage.getItem("expenceEntries")) || [];
+let entries = JSON.parse(localStorage.getItem("expenseEntries")) || [];
 
 function saveAndRender() {
-  localStorage.setItem("expenceEntries", JSON.stringify(entries));
+  localStorage.setItem("expenseEntries", JSON.stringify(entries));
 
   let incVal = 0;
   let expVal = 0;

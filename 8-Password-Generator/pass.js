@@ -1,13 +1,13 @@
-let getDisplay = document.getElementById("display");
+const getDisplay = document.getElementById("display");
 
-let getLow = document.getElementById("low");
-let getUp = document.getElementById("up");
-let getNum = document.getElementById("num");
-let getSym = document.getElementById("sym");
+const getLow = document.getElementById("low");
+const getUp = document.getElementById("up");
+const getNum = document.getElementById("num");
+const getSym = document.getElementById("sym");
 
-let getLength = document.getElementById("length");
-let getLengthDisplay = document.getElementById("lengthDisplay");
-let getSubmit = document.getElementById("submit");
+const getLength = document.getElementById("length");
+const getLengthDisplay = document.getElementById("lengthDisplay");
+const getSubmit = document.getElementById("submit");
 
 function getLowerCases() {
   const combo = "abcdefghijklmnopqrstuvwxyz";
@@ -49,7 +49,7 @@ getSubmit.addEventListener("click", () => {
   }
 
   if (allFunctions.length === 0) {
-    getDisplay.innerHTML = "What you are Generating? Air?";
+    getDisplay.textContent = "What you are Generating? Air?";
     return;
   }
 

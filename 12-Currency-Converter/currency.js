@@ -1,9 +1,9 @@
-let getDisplay = document.getElementById("display");
-let getfrom = document.getElementById("from");
-let getTo = document.getElementById("to");
-let getsubmit = document.getElementById("submit");
-let getNumber = document.getElementById("number");
-let myform = document.getElementById("myform");
+const getDisplay = document.getElementById("display");
+const getfrom = document.getElementById("from");
+const getTo = document.getElementById("to");
+const getsubmit = document.getElementById("submit");
+const getNumber = document.getElementById("number");
+const myform = document.getElementById("myform");
 
 const apiKey = "9b8fb611ba16c087d7844b47";
 

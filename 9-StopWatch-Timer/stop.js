@@ -137,6 +137,14 @@ getTreset.addEventListener("click", () => {
   getTdisplay.innerHTML = `${pad(tHr)} : ${pad(tMin)} : 00`;
 });
 
+tInputH.addEventListener("input", () => {
+  isPaused = false;
+});
+
+tInput.addEventListener("input", () => {
+  isPaused = false;
+});
+
 // SWITCH
 getSwitch.addEventListener("click", () => {
   if (page === 1) {

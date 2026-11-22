@@ -1,6 +1,6 @@
-let getDisplay = document.getElementById("display");
-let getSubmit = document.getElementById("submit");
-let getCity = document.getElementById("city");
+const getDisplay = document.getElementById("display");
+const getSubmit = document.getElementById("submit");
+const getCity = document.getElementById("city");
 
 async function getWeather() {
   const gotCity = getCity.value.trim();
@@ -31,6 +31,10 @@ async function getWeather() {
     const weatherRes = await fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m`,
     );
+
+    if (!weatherRes.ok) {
+      throw new Error("Weather data failed");
+    }
 
     const weatherData = await weatherRes.json();
     getDisplay.textContent = `${foundName},${weatherData.current.temperature_2m}°C`;

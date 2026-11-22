@@ -1,6 +1,6 @@
-let getList = document.getElementById("list");
-let getItem = document.getElementById("item");
-let getMyForm = document.getElementById("myform");
+const getList = document.getElementById("list");
+const getItem = document.getElementById("item");
+const getMyForm = document.getElementById("myform");
 
 getMyForm.addEventListener("submit", (e) => {
   e.preventDefault();
