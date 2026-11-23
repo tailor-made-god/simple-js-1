@@ -2,55 +2,44 @@ const getDisplay = document.getElementById("display");
 const container = document.querySelector("#calc");
 
 const operators = ["+", "-", "*", "/"];
+const errorMessages = ["Error", "Nice try, infinity isn't on the screen"];
 let isResultShown = false;
 
-container.addEventListener("click", (event) => {
-  if (event.target.tagName !== "BUTTON") {
+function clearDisplay() {
+  getDisplay.value = "";
+  isResultShown = false;
+}
+
+function calculateResult() {
+  let expression = getDisplay.value.trim();
+  while (expression && operators.includes(expression.slice(-1))) {
+    expression = expression.slice(0, -1);
+  }
+  if (!expression) {
     return;
   }
 
-  const btn = event.target;
-
-  if (btn.id === "clear") {
-    getDisplay.textContent = "";
-    isResultShown = false;
-    return;
+  try {
+    const result = new Function(`return ${expression}`)();
+    getDisplay.value = Number.isFinite(result) ? result : errorMessages[1];
+    isResultShown = true;
+  } catch {
+    getDisplay.value = errorMessages[0];
+    isResultShown = true;
   }
+}
 
-  if (btn.id === "result") {
-    const expression = getDisplay.textContent.trim();
-    const lastChar = expression.slice(-1);
-    if (!expression || operators.includes(lastChar)) {
-      return;
-    }
-
-    try {
-      const result = new Function(`return ${expression}`)();
-      getDisplay.textContent = Number.isFinite(result) ? result : "Error";
-      isResultShown = true;
-    } catch {
-      getDisplay.textContent = "Error";
-    }
-
-    return;
-  }
-
-  const value = btn.value;
-  if (!value) {
-    return;
-  }
-
-  const currentText = getDisplay.textContent;
+function appendValue(value) {
+  const currentText = getDisplay.value;
   const lastChar = currentText.slice(-1);
 
-  if (currentText === "Error") {
-    getDisplay.textContent = value;
+  if (errorMessages.includes(currentText)) {
+    getDisplay.value = value;
     isResultShown = false;
     return;
   }
-
-  if (isResultShown && !operators.includes.value(value)) {
-    getDisplay.textContent = value;
+  if (isResultShown && !operators.includes(value)) {
+    getDisplay.value = value;
     isResultShown = false;
     return;
   }
@@ -58,9 +47,71 @@ container.addEventListener("click", (event) => {
   isResultShown = false;
 
   if (operators.includes(lastChar) && operators.includes(value)) {
-    getDisplay.textContent = currentText.slice(0, -1) + value;
+    getDisplay.value = currentText.slice(0, -1) + value;
     return;
   }
 
-  getDisplay.textContent = getDisplay.textContent + value;
+  getDisplay.value = currentText + value;
+}
+
+container.addEventListener("click", (event) => {
+  if (event.target.tagName !== "BUTTON") {
+    return;
+  }
+
+  event.target.blur();
+
+  const btn = event.target;
+
+  if (btn.id === "clear") {
+    return clearDisplay();
+  }
+
+  if (btn.id === "result") {
+    return calculateResult();
+  }
+
+  if (btn.value) {
+    appendValue(btn.value);
+  }
+});
+
+// TypeFix
+getDisplay.addEventListener("input", () => {
+  getDisplay.value = getDisplay.value.replace(/[^0-9+\-*/.]/g, "");
+});
+
+document.addEventListener("keydown", (event) => {
+  const key = event.key;
+
+  if (key === "Enter" || key === "=") {
+    event.preventDefault();
+    calculateResult();
+    return;
+  }
+
+  if (key === "Escape") {
+    event.preventDefault();
+    clearDisplay();
+    return;
+  }
+
+  if (document.activeElement === getDisplay) {
+    if (errorMessages.includes(getDisplay.value)) {
+      getDisplay.value = "";
+    }
+    return;
+  }
+
+  if (/^[0-9.]$/.test(key) || operators.includes(key)) {
+    event.preventDefault();
+    appendValue(key);
+  } else if (key === "Backspace") {
+    event.preventDefault();
+    if (errorMessages.includes(getDisplay.value)) {
+      clearDisplay();
+    } else {
+      getDisplay.value = getDisplay.value.slice(0, -1);
+    }
+  }
 });
